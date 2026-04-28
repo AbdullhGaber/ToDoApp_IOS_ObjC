@@ -7,9 +7,6 @@
 
 #import <UIKit/UIKit.h>
 #import "Task.h"
-
-
-
 @interface TaskDetailsViewController : UIViewController
 @property (nonatomic, strong) Task *task;
 

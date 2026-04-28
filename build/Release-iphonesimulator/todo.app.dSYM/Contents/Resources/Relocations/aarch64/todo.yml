@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/ITI/IOS_Objective_C/Project/todo/build/Release-iphonesimulator/todo.app/todo'
+relocations:     []
+...

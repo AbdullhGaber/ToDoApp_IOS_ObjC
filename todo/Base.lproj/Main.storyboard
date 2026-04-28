@@ -93,7 +93,9 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="AWN-bh-Gye" secondAttribute="bottom" id="dRn-nN-STo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="88x-eq-leP"/>
+                    <navigationItem key="navigationItem" id="88x-eq-leP">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Jtz-Wy-3mf"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="AWN-bh-Gye" id="5tq-Xh-RPM"/>
                         <segue destination="Rfu-uy-8q5" kind="show" identifier="ShowTaskDetails" id="QDe-JI-lmy"/>
@@ -101,7 +103,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1057.2519083969464" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="237" y="-451"/>
         </scene>
         <!--Task Details View Controller-->
         <scene sceneID="C0T-fd-gSL">
@@ -208,7 +210,7 @@
                                 <rect key="frame" x="20" y="416.33333333333331" width="353" height="60"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="tablecells.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="img-f2">
-                                        <rect key="frame" x="16" y="15.666666666666663" width="32" height="29.000000000000007"/>
+                                        <rect key="frame" x="16" y="15.666666666666666" width="32" height="29"/>
                                         <color key="tintColor" red="0.85098039219999999" green="0.43921568630000002" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="h-f2"/>
@@ -404,7 +406,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DcK-gN-3Q5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2001" y="-27"/>
+            <point key="canvasLocation" x="1269" y="-451"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Xdp-Bs-fQZ">
@@ -422,13 +424,232 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z4m-S8-RQb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="130.53435114503816" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="-624" y="-451"/>
+        </scene>
+        <!--Add Edit Task View Controller-->
+        <scene sceneID="Add-Edit-Scene-Main">
+            <objects>
+                <viewController storyboardIdentifier="AddEditTaskViewController" id="Add-Edit-VC-ID" customClass="AddEditTaskViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Add-Edit-View">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="View-Card-1">
+                                <rect key="frame" x="20" y="79" width="353" height="150"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Task Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Txt-Name">
+                                        <rect key="frame" x="16" y="8" width="321" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="H-Txt-Name"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="View-Sep-1">
+                                        <rect key="frame" x="16" y="56" width="337" height="1"/>
+                                        <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="H-Sep-1"/>
+                                        </constraints>
+                                    </view>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Notes" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Txt-Notes">
+                                        <rect key="frame" x="12" y="65" width="329" height="77"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Txt-Name" firstAttribute="top" secondItem="View-Card-1" secondAttribute="top" constant="8" id="C-TN-1"/>
+                                    <constraint firstItem="Txt-Name" firstAttribute="leading" secondItem="View-Card-1" secondAttribute="leading" constant="16" id="C-TN-2"/>
+                                    <constraint firstAttribute="trailing" secondItem="Txt-Name" secondAttribute="trailing" constant="16" id="C-TN-3"/>
+                                    <constraint firstItem="Txt-Notes" firstAttribute="top" secondItem="View-Sep-1" secondAttribute="bottom" constant="8" id="C-TNt-1"/>
+                                    <constraint firstItem="Txt-Notes" firstAttribute="leading" secondItem="View-Card-1" secondAttribute="leading" constant="12" id="C-TNt-2"/>
+                                    <constraint firstAttribute="trailing" secondItem="Txt-Notes" secondAttribute="trailing" constant="12" id="C-TNt-3"/>
+                                    <constraint firstAttribute="bottom" secondItem="Txt-Notes" secondAttribute="bottom" constant="8" id="C-TNt-4"/>
+                                    <constraint firstAttribute="height" constant="150" id="C-VC-1"/>
+                                    <constraint firstItem="View-Sep-1" firstAttribute="top" secondItem="Txt-Name" secondAttribute="bottom" constant="8" id="C-VS-1"/>
+                                    <constraint firstItem="View-Sep-1" firstAttribute="leading" secondItem="View-Card-1" secondAttribute="leading" constant="16" id="C-VS-2"/>
+                                    <constraint firstAttribute="trailing" secondItem="View-Sep-1" secondAttribute="trailing" id="C-VS-3"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PRIORITY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lbl-Pri-Head">
+                                <rect key="frame" x="20" y="253" width="67" height="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Seg-Pri">
+                                <rect key="frame" x="20" y="278" width="353" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="H-Seg-Pri"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="None"/>
+                                    <segment title="High"/>
+                                    <segment title="Med"/>
+                                    <segment title="Low"/>
+                                </segments>
+                            </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="View-Card-2">
+                                <rect key="frame" x="20" y="350" width="353" height="150"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="calendar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Img-Cal">
+                                        <rect key="frame" x="16" y="15.666666666666661" width="24" height="21.000000000000011"/>
+                                        <color key="tintColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="H-IC"/>
+                                            <constraint firstAttribute="width" constant="24" id="W-IC"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Due Date" textAlignment="natural" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lbl-DD">
+                                        <rect key="frame" x="52" y="16.333333333333314" width="68" height="19.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" red="0.10980392160000001" green="0.10980392160000001" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Today &gt;" textAlignment="right" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lbl-Tod">
+                                        <rect key="frame" x="279.33333333333331" y="16.333333333333314" width="57.666666666666686" height="19.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="View-Sep-2">
+                                        <rect key="frame" x="16" y="50" width="337" height="1"/>
+                                        <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="H-Sep-2"/>
+                                        </constraints>
+                                    </view>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="bell.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Img-Bell">
+                                        <rect key="frame" x="16" y="63.333333333333329" width="24" height="23.333333333333329"/>
+                                        <color key="tintColor" red="0.85098039219999999" green="0.43921568630000002" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="H-IB"/>
+                                            <constraint firstAttribute="width" constant="24" id="W-IB"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Remind Me" textAlignment="natural" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lbl-RM">
+                                        <rect key="frame" x="52" y="65.333333333333314" width="81" height="19.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" red="0.10980392160000001" green="0.10980392160000001" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Sw-RM">
+                                        <rect key="frame" x="288" y="59.666666666666686" width="51" height="31"/>
+                                    </switch>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="View-Sep-3">
+                                        <rect key="frame" x="16" y="99" width="337" height="1"/>
+                                        <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="H-Sep-3"/>
+                                        </constraints>
+                                    </view>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="paperclip" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Img-Clip">
+                                        <rect key="frame" x="16" y="112" width="24" height="24.666666666666686"/>
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="H-ICp"/>
+                                            <constraint firstAttribute="width" constant="24" id="W-ICp"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Add Attachment" textAlignment="natural" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lbl-AA">
+                                        <rect key="frame" x="52" y="114.33333333333331" width="117" height="19.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" red="0.10980392160000001" green="0.10980392160000001" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="&gt;" textAlignment="right" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lbl-Arr">
+                                        <rect key="frame" x="327" y="114.33333333333331" width="10" height="19.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Img-Bell" firstAttribute="leading" secondItem="View-Card-2" secondAttribute="leading" constant="16" id="C-IB-1"/>
+                                    <constraint firstItem="Img-Bell" firstAttribute="top" secondItem="View-Sep-2" secondAttribute="bottom" constant="12" id="C-IB-2"/>
+                                    <constraint firstItem="Img-Cal" firstAttribute="leading" secondItem="View-Card-2" secondAttribute="leading" constant="16" id="C-IC-1"/>
+                                    <constraint firstItem="Img-Cal" firstAttribute="top" secondItem="View-Card-2" secondAttribute="top" constant="14" id="C-IC-2"/>
+                                    <constraint firstItem="Img-Clip" firstAttribute="leading" secondItem="View-Card-2" secondAttribute="leading" constant="16" id="C-ICp-1"/>
+                                    <constraint firstItem="Img-Clip" firstAttribute="top" secondItem="View-Sep-3" secondAttribute="bottom" constant="12" id="C-ICp-2"/>
+                                    <constraint firstItem="Lbl-AA" firstAttribute="centerY" secondItem="Img-Clip" secondAttribute="centerY" id="C-LAA-1"/>
+                                    <constraint firstItem="Lbl-AA" firstAttribute="leading" secondItem="Img-Clip" secondAttribute="trailing" constant="12" id="C-LAA-2"/>
+                                    <constraint firstItem="Lbl-Arr" firstAttribute="centerY" secondItem="Img-Clip" secondAttribute="centerY" id="C-LArr-1"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lbl-Arr" secondAttribute="trailing" constant="16" id="C-LArr-2"/>
+                                    <constraint firstItem="Lbl-DD" firstAttribute="centerY" secondItem="Img-Cal" secondAttribute="centerY" id="C-LDD-1"/>
+                                    <constraint firstItem="Lbl-DD" firstAttribute="leading" secondItem="Img-Cal" secondAttribute="trailing" constant="12" id="C-LDD-2"/>
+                                    <constraint firstItem="Lbl-RM" firstAttribute="centerY" secondItem="Img-Bell" secondAttribute="centerY" id="C-LRM-1"/>
+                                    <constraint firstItem="Lbl-RM" firstAttribute="leading" secondItem="Img-Bell" secondAttribute="trailing" constant="12" id="C-LRM-2"/>
+                                    <constraint firstItem="Lbl-Tod" firstAttribute="centerY" secondItem="Img-Cal" secondAttribute="centerY" id="C-LTod-1"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lbl-Tod" secondAttribute="trailing" constant="16" id="C-LTod-2"/>
+                                    <constraint firstItem="Sw-RM" firstAttribute="centerY" secondItem="Img-Bell" secondAttribute="centerY" id="C-SRM-1"/>
+                                    <constraint firstAttribute="trailing" secondItem="Sw-RM" secondAttribute="trailing" constant="16" id="C-SRM-2"/>
+                                    <constraint firstAttribute="height" constant="150" id="C-VC2-1"/>
+                                    <constraint firstItem="View-Sep-2" firstAttribute="top" secondItem="Img-Cal" secondAttribute="bottom" constant="12" id="C-VS2-1"/>
+                                    <constraint firstItem="View-Sep-2" firstAttribute="leading" secondItem="View-Card-2" secondAttribute="leading" constant="16" id="C-VS2-2"/>
+                                    <constraint firstAttribute="trailing" secondItem="View-Sep-2" secondAttribute="trailing" id="C-VS2-3"/>
+                                    <constraint firstItem="View-Sep-3" firstAttribute="top" secondItem="Img-Bell" secondAttribute="bottom" constant="12" id="C-VS3-1"/>
+                                    <constraint firstItem="View-Sep-3" firstAttribute="leading" secondItem="View-Card-2" secondAttribute="leading" constant="16" id="C-VS3-2"/>
+                                    <constraint firstAttribute="trailing" secondItem="View-Sep-3" secondAttribute="trailing" id="C-VS3-3"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created April 27, 2026, 9:41 AM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lbl-Date-Mock">
+                                <rect key="frame" x="20" y="524" width="353" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Safe-Add-Edit"/>
+                        <color key="backgroundColor" red="0.97254901959999995" green="0.97647058819999999" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="View-Card-1" firstAttribute="top" secondItem="Safe-Add-Edit" secondAttribute="top" constant="20" id="C-M-1"/>
+                            <constraint firstItem="View-Card-2" firstAttribute="leading" secondItem="Safe-Add-Edit" secondAttribute="leading" constant="20" id="C-M-10"/>
+                            <constraint firstItem="Safe-Add-Edit" firstAttribute="trailing" secondItem="View-Card-2" secondAttribute="trailing" constant="20" id="C-M-11"/>
+                            <constraint firstItem="Lbl-Date-Mock" firstAttribute="top" secondItem="View-Card-2" secondAttribute="bottom" constant="24" id="C-M-12"/>
+                            <constraint firstItem="Lbl-Date-Mock" firstAttribute="leading" secondItem="Safe-Add-Edit" secondAttribute="leading" constant="20" id="C-M-13"/>
+                            <constraint firstItem="Safe-Add-Edit" firstAttribute="trailing" secondItem="Lbl-Date-Mock" secondAttribute="trailing" constant="20" id="C-M-14"/>
+                            <constraint firstItem="View-Card-1" firstAttribute="leading" secondItem="Safe-Add-Edit" secondAttribute="leading" constant="20" id="C-M-2"/>
+                            <constraint firstItem="Safe-Add-Edit" firstAttribute="trailing" secondItem="View-Card-1" secondAttribute="trailing" constant="20" id="C-M-3"/>
+                            <constraint firstItem="Lbl-Pri-Head" firstAttribute="top" secondItem="View-Card-1" secondAttribute="bottom" constant="24" id="C-M-4"/>
+                            <constraint firstItem="Lbl-Pri-Head" firstAttribute="leading" secondItem="Safe-Add-Edit" secondAttribute="leading" constant="20" id="C-M-5"/>
+                            <constraint firstItem="Seg-Pri" firstAttribute="top" secondItem="Lbl-Pri-Head" secondAttribute="bottom" constant="8" id="C-M-6"/>
+                            <constraint firstItem="Seg-Pri" firstAttribute="leading" secondItem="Safe-Add-Edit" secondAttribute="leading" constant="20" id="C-M-7"/>
+                            <constraint firstItem="Safe-Add-Edit" firstAttribute="trailing" secondItem="Seg-Pri" secondAttribute="trailing" constant="20" id="C-M-8"/>
+                            <constraint firstItem="View-Card-2" firstAttribute="top" secondItem="Seg-Pri" secondAttribute="bottom" constant="32" id="C-M-9"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Nav-Item-Add-Edit"/>
+                    <connections>
+                        <outlet property="nameTextField" destination="Txt-Name" id="Out-Name"/>
+                        <outlet property="notesTextView" destination="Txt-Notes" id="Out-Notes"/>
+                        <outlet property="prioritySegment" destination="Seg-Pri" id="Out-Pri"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Add-Edit-Resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2205" y="-451"/>
         </scene>
     </scenes>
     <resources>
         <image name="bell.fill" catalog="system" width="123" height="128"/>
+        <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="circle" catalog="system" width="128" height="123"/>
         <image name="doc.fill" catalog="system" width="115" height="128"/>
+        <image name="paperclip" catalog="system" width="121" height="128"/>
         <image name="tablecells.fill" catalog="system" width="128" height="93"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

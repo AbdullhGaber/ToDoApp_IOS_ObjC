@@ -30,29 +30,35 @@
     
     self.statusBadge.layer.cornerRadius = 4;
     self.statusBadge.layer.masksToBounds = YES;
+    
+    self.checkCircle.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(checkTapped)];
+    [self.checkCircle addGestureRecognizer:tap];
+}
+
+- (void)checkTapped {
+    if (self.onCheckTapped) {
+        self.onCheckTapped();
+    }
 }
 
 - (void)configureWithTask:(Task *)task {
     self.titleLabel.text = task.name;
     self.descriptionLabel.text = task.taskDescription;
     
+    self.priorityBadge.backgroundColor = [UIColor clearColor];
+    
     switch (task.priority) {
         case TaskPriorityHigh:
-            self.priorityBadge.text = @"High";
-            self.priorityBadge.textColor = [UIColor colorWithRed:0.78 green:0.31 blue:0.31 alpha:1.0];
-            self.priorityBadge.backgroundColor = [UIColor colorWithRed:0.98 green:0.87 blue:0.87 alpha:1.0];
+            self.priorityBadge.text = @"🔴";
             self.priorityBadge.hidden = NO;
             break;
         case TaskPriorityMedium:
-            self.priorityBadge.text = @"Med";
-            self.priorityBadge.textColor = [UIColor colorWithRed:0.72 green:0.55 blue:0.21 alpha:1.0];
-            self.priorityBadge.backgroundColor = [UIColor colorWithRed:0.99 green:0.95 blue:0.88 alpha:1.0];
+            self.priorityBadge.text = @"🟡";
             self.priorityBadge.hidden = NO;
             break;
         case TaskPriorityLow:
-            self.priorityBadge.text = @"Low";
-            self.priorityBadge.textColor = [UIColor colorWithRed:0.29 green:0.62 blue:0.55 alpha:1.0];
-            self.priorityBadge.backgroundColor = [UIColor colorWithRed:0.88 green:0.96 blue:0.94 alpha:1.0];
+            self.priorityBadge.text = @"🟢";
             self.priorityBadge.hidden = NO;
             break;
         default:
@@ -76,6 +82,14 @@
             self.statusBadge.textColor = [UIColor colorWithRed:0.2 green:0.7 blue:0.3 alpha:1.0];
             self.statusBadge.backgroundColor = [UIColor colorWithRed:0.85 green:0.98 blue:0.9 alpha:1.0];
             break;
+    }
+    
+    if (task.status == TaskStatusDone) {
+        self.checkCircle.image = [UIImage systemImageNamed:@"largecircle.fill.circle"];
+        self.checkCircle.tintColor = [UIColor colorWithRed:0.2 green:0.7 blue:0.3 alpha:1.0];
+    } else {
+        self.checkCircle.image = [UIImage systemImageNamed:@"circle"];
+        self.checkCircle.tintColor = [UIColor systemGray4Color];
     }
 }
 

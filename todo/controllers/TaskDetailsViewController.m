@@ -6,6 +6,8 @@
 //
 
 #import "TaskDetailsViewController.h"
+#import "AddEditTaskViewController.h"
+#import "StorageManager.h"
 
 @implementation TaskDetailsViewController
 
@@ -16,16 +18,15 @@
     self.title = @"Task Details";
     
     [self populateUI];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(populateUI) name:@"TaskDataDidUpdate" object:nil];
 }
 
 - (void)editTapped {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UINavigationController *navController = [storyboard instantiateViewControllerWithIdentifier:@"AddEditNav"];
-
-//    AddEditTaskViewController *editVC = (AddEditTaskViewController *)navController.topViewController;
-//    editVC.taskToEdit = self.task;
+    AddEditTaskViewController *editVC = [storyboard instantiateViewControllerWithIdentifier:@"AddEditTaskViewController"];
+    editVC.taskToEdit = self.task;
     
-    [self presentViewController:navController animated:YES completion:nil];
+    [self.navigationController pushViewController:editVC animated:YES];
 }
 
 - (void)populateUI {
@@ -62,24 +63,77 @@
             self.priorityBadge.hidden = YES;
             break;
     }
+    
+    for (UIView *subview in self.view.subviews) {
+        if ([subview isKindOfClass:[UIButton class]]) {
+            UIButton *btn = (UIButton *)subview;
+            NSString *title = [btn titleForState:UIControlStateNormal];
+            if ([title containsString:@"Progress"]) {
+                btn.enabled = (self.task.status == TaskStatusToDo);
+                btn.alpha = btn.enabled ? 1.0 : 0.5;
+            } else if ([title containsString:@"Done"]) {
+                btn.enabled = (self.task.status != TaskStatusDone);
+                btn.alpha = btn.enabled ? 1.0 : 0.5;
+            }
+        }
+    }
 }
 
 
 - (IBAction)markInProgressTapped:(id)sender {
-    NSLog(@"Marking as In Progress...");
-    // Future logic: Update task status, save to StorageManager, pop view controller
+    if (self.task.status != TaskStatusToDo) return;
+    
+    NSMutableArray *currentTasks = [[[StorageManager sharedManager] loadTasks] mutableCopy];
+    for (Task *t in currentTasks) {
+        if ([t.taskId isEqualToString:self.task.taskId]) {
+            t.status = TaskStatusInProgress;
+            self.task.status = TaskStatusInProgress;
+            break;
+        }
+    }
+    [[StorageManager sharedManager] saveTasks:currentTasks];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"TaskDataDidUpdate" object:nil];
 }
 
 
 - (IBAction)markAsDoneTapped:(id)sender {
-    NSLog(@"Marking as Done...");
-    // Future logic: Update task status, save to StorageManager, pop view controller
+    if (self.task.status == TaskStatusDone) return;
+    
+    NSMutableArray *currentTasks = [[[StorageManager sharedManager] loadTasks] mutableCopy];
+    for (Task *t in currentTasks) {
+        if ([t.taskId isEqualToString:self.task.taskId]) {
+            t.status = TaskStatusDone;
+            self.task.status = TaskStatusDone;
+            break;
+        }
+    }
+    [[StorageManager sharedManager] saveTasks:currentTasks];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"TaskDataDidUpdate" object:nil];
 }
 
 
 - (IBAction)deleteTapped:(id)sender {
-    NSLog(@"Deleting task...");
-    // Future logic: Remove task from StorageManager, pop view controller
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Delete Task" message:@"Are you sure you want to delete this task?" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        NSMutableArray *currentTasks = [[[StorageManager sharedManager] loadTasks] mutableCopy];
+        NSMutableArray *tasksToKeep = [NSMutableArray array];
+        for (Task *t in currentTasks) {
+            if (![t.taskId isEqualToString:self.task.taskId]) {
+                [tasksToKeep addObject:t];
+            }
+        }
+        [[StorageManager sharedManager] saveTasks:tasksToKeep];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"TaskDataDidUpdate" object:nil];
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    
+    [alert addAction:deleteAction];
+    [alert addAction:cancelAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end

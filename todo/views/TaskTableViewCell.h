@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet BadgeLabel *priorityBadge;
 @property (weak, nonatomic) IBOutlet BadgeLabel *statusBadge;
 
+@property (nonatomic, copy) void (^onCheckTapped)(void);
+
 - (void)configureWithTask:(Task *)task;
 
 @end

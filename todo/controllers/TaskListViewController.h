@@ -7,9 +7,7 @@
 
 
 #import <UIKit/UIKit.h>
-
-
-@interface TaskListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface TaskListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
